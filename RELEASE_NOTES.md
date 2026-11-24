@@ -1,3 +1,61 @@
+# v0.3.0-beta.3 — P25 call-identification and audio continuity
+
+Firmware source `d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda`; radio build
+**d53b224**. This is a maintenance update made directly from the published
+beta.2 source, `e799c73`. It includes the P25 audio correction, its minimal
+diagnostics and regression tests. It does not bring later research features
+into the beta. Older application files and source archives remain unchanged.
+
+Some valid P25 call-identification messages could previously be classified as
+unsupported. The receiver would then mute and discard queued audio despite
+good signal synchronization. This update:
+
+- Accepts the fixed-format encryption information in manufacturer-labelled
+  headers without rejecting a clear call solely because of the manufacturer ID.
+- Accepts supported standard link-control layouts using manufacturer ID `00`
+  or the alternate standard ID `01`.
+- Keeps an already qualified clear call playing through recognized group
+  channel-update and source-extension signaling. These messages cannot start a
+  clear call by themselves, change its identity, or extend its qualification
+  indefinitely. Source extensions must match the current caller.
+- Retains a compact, eight-byte last-rejection record for the serial **RXCALL**
+  status line. It records the reason and metadata fields without retaining
+  voice frames or adding a large diagnostic buffer.
+
+Encrypted, protected, unknown or inconsistent calls remain muted. Existing
+receive filters still apply. The IMBE decoder source, voice-error policy,
+queue sizes and playback prefill are unchanged. V6 settings, CPS programming
+and applet formats are unchanged; export complete JSON before updating as usual.
+
+## Validation and limits
+
+Focused local checks passed: **3,008 metadata cases**, **51 real-codec replay
+cases**, actual receive-adapter/scan/tail checks, and four strict compile
+configurations. The healthy 504-frame reference audio remains byte-for-byte
+identical. These checks exercise metadata interpretation and audio ownership;
+they do not measure RF sensitivity or qualify a new hardware variant.
+
+Full host CI **45393907525**, processor CI **45396375783** and offline package
+checks passed for the exact firmware source. The normal multimode build has
+laboratory diagnostics, RF-B and Omaha-specific flags disabled; later research
+features are excluded.
+
+The codec-free application is **523,844 bytes**, an increase of 1,040 bytes
+from beta.2. Linked static RAM is **199,184 / 211,456 bytes**, leaving
+**12,272 bytes**; this is a net increase of eight bytes. The application SHA-256
+is `fda7f87150bdca2550f6ab37b3f1040265bdafbd197cef30b81f29e66ff1bcfc`.
+The installer still prepares the complete update locally using your own radio's
+sealed original backup.
+
+The metadata compatibility defect was present before the first public beta.
+The report that prompted this work does not establish an earlier working
+Multimode version, and its exact received metadata has not been captured.
+**No new RF test or reporter-specific reproduction is claimed.** This fixes
+demonstrated compatibility and muting cases without claiming that every audio
+breakup has the same cause. The [known limits](KNOWN_ISSUES.md) still apply.
+
+---
+
 # v0.3.0-beta.2 — control-channel reception and receive-only recovery
 
 Firmware source `e799c73ab286c26648771cc91d2aaefad0c0a10b`; radio build

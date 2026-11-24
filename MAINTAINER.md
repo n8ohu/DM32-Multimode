@@ -1,8 +1,11 @@
 # Maintaining beta packages
 
 This repository is publicly readable. Current staged release:
-**v0.3.0-beta.1 / firmware6868053**. Keep earlier release directories/archives
+**v0.3.0-beta.3 / firmware d53b224**. Keep earlier release directories/archives
 unchanged and distinguish firmware source from later CPS-only revisions.
+This maintenance build starts directly from beta.2 (`e799c73`) and contains only
+the approved P25 metadata/audio correction, compact rejection evidence and tests.
+Do not replace it with a research-branch application when publishing.
 
 Distribute only codec-free applications. Never commit backups, calibration,
 contacts/personal JSON, human voice captures, extracted native codecs or merged

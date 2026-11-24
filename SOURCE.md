@@ -1,15 +1,30 @@
 # Current source and build provenance
 
-Release **0.3.0-beta.2** distributes exact firmware **e799c73** from
-`e799c73ab286c26648771cc91d2aaefad0c0a10b`, processor CI **44068616566**. Firmware application SHA-256 is
-`23f808a44acb504c8148846ded9c79fe56517875622f4595ca925fcfb4bcd46a`.
-Focused local host checks passed; a complete host-CI workflow was not run for
-this revision. The processor workflow ran the 57 passive, receive-recovery and
-subscriber controller cases before building. See [release notes](RELEASE_NOTES.md)
-for the check scope; no new RF qualification is claimed.
+Release **0.3.0-beta.3** uses exact firmware **d53b224** from
+`d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda`, directly based on published beta.2
+source `e799c73ab286c26648771cc91d2aaefad0c0a10b`. Only the P25 metadata/audio
+correction, its minimal rejection diagnostics and regression tests are added;
+later research features are not included. Full host CI **45393907525** and
+processor CI **45396375783** passed, together with offline package checks.
+The codec-free application is **523,844 bytes**, with SHA-256
+`fda7f87150bdca2550f6ab37b3f1040265bdafbd197cef30b81f29e66ff1bcfc`.
+Linked static RAM is **199,184 / 211,456 bytes**, leaving **12,272 bytes**.
+
+The processor workflow ran from builder revision
+`d5c42b0fce63814e645d7fa1b2d4340e36084605`; it explicitly checked out and
+verified firmware source `d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda` before
+building. The workflow revision identifies the build automation, not additional
+firmware changes. Laboratory diagnostics, RF-B and Omaha-specific build flags
+were disabled, and later research symbols are absent from the application.
+
+Focused local checks passed: 3,008 metadata cases, 51 real-codec replay cases,
+actual receive-adapter/scan/tail checks and four strict compile configurations.
+Healthy reference audio is byte-for-byte unchanged. See
+[release notes](RELEASE_NOTES.md) for the check scope; no new RF qualification
+or reporter-specific reproduction is claimed.
 The later CPS/flasher source identity is separate in the release manifest.
 
-[0.3.0-beta.2-project.zip](source/0.3.0-beta.2-project.zip) contains exact
+[0.3.0-beta.3-project.zip](source/0.3.0-beta.3-project.zip) contains exact
 production firmware/host sources, required build generators, current host
 regressions, applet clients/examples, the firmware revision's CPS source and
 curated pinned reference/fixture inputs. No Git history, owner material,
@@ -28,7 +43,7 @@ The [applet manifest](applets/manifest.json) records source/package hashes.
 The unchanged RadioFoundry/FreeRTOS archives and build procedure below remain
 applicable. Replace the historical project ZIP/version in those commands with
 the current one. Extracted source has no original Git history: a new local
-snapshot commit gives a new build identity, not development commit e799c73.
+snapshot commit gives a new build identity, not development commit d53b224.
 The reference toolchain is GCC14.2.0/Binutils2.43.1/Newlib4.5 on Ubuntu24.04.
 A local rebuild is not promised byte-identical to this tested CI application.
 

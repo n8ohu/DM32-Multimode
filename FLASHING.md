@@ -1,9 +1,9 @@
 # Install or update the DM32 Multimode beta
 
-For **DM-32UV / DM32 only**, using its USB serial programming cable. The current package is **v0.3.0-beta.2 / build e799c73**. Its bare application is **not directly flashable**: the offline preparer adds the correct native codec from your own sealed backup.
+For **DM-32UV / DM32 only**, using its USB serial programming cable. The current package is **v0.3.0-beta.3 / build d53b224**. Its bare application is **not directly flashable**: the offline preparer adds the correct native codec from your own sealed backup.
 
 The current installer also accepts the verified stock **037, 039 and 040** codec
-family for v0.3.0-beta.2. Update the installer tools and use that release folder;
+family for v0.3.0-beta.3. Update the installer tools and use that release folder;
 older releases keep their original compatibility limits. Identification checks
 the backup's codec bytes, not the version you type. A package may show codec map
 tag **037** for stock 039/040; `codec-info` retains the detected stock tag.
@@ -16,9 +16,9 @@ Use a charged battery and a reliable cable. Close CPS and every other program us
 2. Reuse the **sealed original backup from this same physical radio** and its original radio label. Do not replace it with a backup of the beta or use another radio's backup. There is no need to repeat the two-read backup process if that backup is already sealed and intact.
 3. Update/download this repository, then prepare locally below. The retained guarded CLI route explicitly makes a fresh preservation read; it is separate from the browser's routine existing-backup flow.
 
-This release keeps the V6 settings format used by v0.3.0-beta.1; updating from beta.1 needs no codeplug conversion. Read/export complete JSON before upgrading. When updating from an older format, keep its JSON for rollback; CPS retains that format until an explicit working-copy upgrade.
+This release keeps the V6 settings format used by v0.3.0-beta.1 and beta.2; updating from either needs no codeplug conversion. Read/export complete JSON before upgrading. When updating from an older format, keep its JSON for rollback; CPS retains that format until an explicit working-copy upgrade.
 
-Firmware e799c73 reads supported V1-V6 settings without a boot-time migration write. The first explicit save of older settings publishes V6. CPS retains an older file's format until you choose **Upgrade codeplug**. Review the resulting channels, zones/lists, contacts and named systems before writing, and keep the original JSON.
+Firmware d53b224 reads supported V1-V6 settings without a boot-time migration write. The first explicit save of older settings publishes V6. CPS retains an older file's format until you choose **Upgrade codeplug**. Review the resulting channels, zones/lists, contacts and named systems before writing, and keep the original JSON.
 
 **Rollback to earlier firmware:** V0.2.0-beta.1 and beta.2 use V4 and cannot read V6 contacts/named systems. Earlier V1-V3 firmware also lacks the expanded V4 memories/zones/lists. Reinstall the earlier version with its own package, then write the compatible JSON saved for that version using CPS. Retained fallback records are not a complete copy of your latest configuration; there is no lossless V6-to-earlier conversion. [Stock recovery](RECOVERY.md) restores your original application/codec separately.
 
@@ -52,7 +52,7 @@ Set your own port, unique physical-radio label, backup path and release. The exa
 $radioPort = 'COM5'
 $radioLabel = 'my-dm32-serial'
 $backup = '.\backups\my-dm32-before-beta'
-$release = '.\firmware\v0.3.0-beta.2\release.json'
+$release = '.\firmware\v0.3.0-beta.3\release.json'
 ```
 
 Use letters, digits, `-` or `_` in the label. A returning user must keep the label already sealed with their backup. The label binds files together; it does not electronically authenticate the radio.
@@ -81,19 +81,19 @@ These commands open **no serial port**:
 & $python tools/radio-safety.py inspect --directory $backup --radio-label $radioLabel
 & $python tools/prepare-firmware.py codec-info --backup $backup --radio-label $radioLabel --release $release
 & $python tools/prepare-firmware.py --backup $backup --radio-label $radioLabel --release $release
-$package = ".\build\$radioLabel\0.3.0-beta.2\package.json"
+$package = ".\build\$radioLabel\0.3.0-beta.3\package.json"
 ```
 
-Codec selection is automatic. The tool accepts exact verified standard 046, standard 049, NRF/fanti 049 and HR046 contracts, checks code/tables and relocation layout, then validates the complete merged update. No separate stock download, manual selection or stock-049 upgrade is needed when your backup matches a profile. HR046 has offline layout/package checks; its voice behavior still needs physical feedback.
+Codec selection is automatic. The tool accepts exact verified standard 037/039/040, standard 046, standard 049, NRF/fanti 049 and HR046 contracts, checks code/tables and relocation layout, then validates the complete merged update. No separate stock download, manual selection or stock-049 upgrade is needed when your backup matches a profile. HR046 has offline layout/package checks; its voice behavior still needs physical feedback.
 
 If detection refuses an unknown/damaged codec, retain the exact error and ask the maintainer. **Do not force it, edit the manifest or substitute another radio's files.** Detection/preparation cannot erase or flash anything. Power-cycle normally if the radio is still in the RAM reader.
 
 Default private output for this release:
 
 ```text
-build/<radio-label>/0.3.0-beta.2/package.json
-build/<radio-label>/0.3.0-beta.2/application-codec.bin
-build/<radio-label>/0.3.0-beta.2/application-codec_BFUV32.bin
+build/<radio-label>/0.3.0-beta.3/package.json
+build/<radio-label>/0.3.0-beta.3/application-codec.bin
+build/<radio-label>/0.3.0-beta.3/application-codec_BFUV32.bin
 ```
 
 A repeat command safely reuses an already verified package for the same backup/release. Changed or invalid existing output is never overwritten. To make a separate package, use `--output .\build\my-new-package`, then set `$package` to its `package.json`. Use the generated manifest with the flash helper; never hand the bare application to an updater.
@@ -133,7 +133,7 @@ After transfer closes, switch **OFF**, remove the battery for ten seconds, refit
 
 At the reader's cue, turn **ON normally, no buttons**. Its independent read must match the complete prepared application/codec, original bootloader and factory calibration. Wait for **`VERIFIED`**. The readback and `verification.json` stay in a new check folder inside your backup. Ordinary settings may legitimately differ after a normal boot.
 
-When the reader closes, switch off, remove/refit the battery, then turn on normally with PTT released. The home screen should return; find build **e799c73** under **Tools -> Diagnostics -> Radio status**. Keep the package and verification result with your original backup.
+When the reader closes, switch off, remove/refit the battery, then turn on normally with PTT released. The home screen should return; find build **d53b224** under **Tools -> Diagnostics -> Radio status**. Keep the package and verification result with your original backup.
 
 ## 6. Configure and use
 

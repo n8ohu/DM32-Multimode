@@ -2,10 +2,11 @@
 
 Use the radio normally within the [known scope](KNOWN_ISSUES.md). Repeated qualification is not required. One clear reproduction with a useful comparison is more valuable than many undocumented attempts.
 
-Current **v0.3.0-beta.1 / 6868053** adds V6 named systems and ships matching
-applet tools. Exact host/target/offline checks passed. Distinguish conventional,
-receive-only trunk following and experimental subscriber behavior in reports.
-Keep personal IDs, codeplugs, backups and voice recordings private.
+Current **v0.3.0-beta.3 / d53b224** is a focused P25 receive-audio maintenance
+update to beta.2. Your V6 settings and applets use the same format. Distinguish
+conventional P25, receive-only trunk following and experimental subscriber
+behavior in reports. Keep personal IDs, codeplugs, backups and voice recordings
+private.
 
 ## Useful first observations
 
@@ -30,6 +31,14 @@ Open a [bug report](https://github.com/Speexvocon/DM32-Multimode/issues/new?temp
 - For installation: command/step and exact error. Lines above the final hint often contain the useful codec/backup detail.
 
 Photograph a fault or copy its text before restart when practical. Minimal status/fault counters help when requested; diagnostics remain secondary to ordinary controls.
+
+For P25 audio problems, note whether the screen says **Identifying call** or
+**Unsupported / muted** while another receiver plays speech. If requested,
+copy the serial **RXCALL** status line after the problem. Beta.3 retains the
+last metadata rejection reason and its relevant fields in an eight-byte
+record, even after normal reception resumes. This identifies a possible
+muting decision; it is not an audio recording or proof of the cause by itself.
+Do not repeat a test just to collect it if the original observation is enough.
 
 ## Files and privacy
 

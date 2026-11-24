@@ -1,10 +1,11 @@
 # Known issues and scope
 
-Current package: **v0.3.0-beta.2 / e799c73**. Focused host regressions, the
-processor build and offline package checks passed for the exact firmware.
-The new receive fixes have no new RF qualification. Earlier physical evidence
-is finite and comes from a small local development setup, not a general
-interoperability program.
+Current package: **v0.3.0-beta.3 / d53b224**. This is the beta.2 firmware with
+a focused P25 metadata/audio-continuity correction and a minimal rejection
+record. Full host CI, the processor build and offline package checks passed
+for the exact firmware. No new RF qualification is claimed. Earlier physical
+evidence is finite and comes from a small local development setup, not a
+general interoperability program.
 
 ## Trunking
 
@@ -26,6 +27,15 @@ interoperability program.
 
 ## Configuration, audio and applets
 
+- The P25 audio correction accepts supported call metadata that earlier betas
+  could mistake for an unsupported call. It has independent protocol vectors,
+  real-codec replay and receiver-adapter coverage. The exact cause of the
+  reported field audio breakup has not been captured, so this is not a claim
+  that every P25 audio issue is resolved.
+- Supplementary signaling cannot start a clear call on its own. It can retain
+  an already qualified call for a bounded interval; unknown, protected,
+  encrypted or inconsistent signaling remains muted. This is not complete
+  support for every P25 link-control message or vendor feature.
 - V6 adds named systems after V5 contacts and V4 expanded memories. Older
   firmware cannot read newer records. Export JSON before upgrades and retain
   the older-format JSON for rollback; CSV contains channels only.
@@ -43,8 +53,9 @@ interoperability program.
 
 ## Native-codec compatibility
 
-Offline preparation accepts exact Standard 046, Standard 049, NRF/fanti 049 and
-HR Vocoder 046 contracts from your own sealed backup. Exact code/table hashes,
+Offline preparation accepts exact Standard 037/039/040, Standard 046,
+Standard 049, NRF/fanti 049 and HR Vocoder 046 contracts from your own sealed
+backup. Exact code/table hashes,
 placement and relocations are checked. Other/altered contracts are refused.
 The new release does not claim fresh physical qualification on every profile;
 HR046 voice remains physically unqualified. RF-B / NRFB.050 remains incompatible

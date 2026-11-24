@@ -26,8 +26,8 @@ for communications you must be able to depend on.
 
 | Item | Details |
 | --- | --- |
-| Latest beta | **v0.3.0-beta.2** |
-| Build shown on the radio | **e799c73** |
+| Latest beta | **v0.3.0-beta.3** |
+| Build shown on the radio | **d53b224** |
 | Intended radio | Classic **DM-32UV / DM32** hardware with a supported original codec |
 | Currently incompatible | **RF-B / DM32.NRFB.01.050** variants; support is planned |
 
@@ -98,10 +98,12 @@ For listening, leave **Do not affiliate (receive only)** checked in DM32 Studio.
 The radio can follow calls without registering, affiliating or transmitting.
 New systems use this setting; existing systems keep the mode you saved.
 
-This update improves control-channel decoding, search and recovery after a
-temporary receive failure. It keeps the same V6 settings format as beta.1.
-The new receive changes have host tests and a processor build; they still need
-feedback from radios listening to actual systems.
+Beta.3 is a focused P25 receive-audio correction built from beta.2. Some valid
+call-identification messages could previously make the radio mute clear speech.
+The update improves that compatibility and preserves qualified audio through
+supported supplementary signaling. It keeps the same V6 settings format and
+the same P25 voice decoder. See the [release notes](RELEASE_NOTES.md) for the
+checks and remaining limits.
 
 Subscriber mode can send registration, affiliation and channel requests. Use it
 only on a system whose operator has explicitly authorized your radio and testing.

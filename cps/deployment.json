@@ -1,7 +1,7 @@
 {
   "application": "DM32 Studio bundled CPS",
   "source_revision": "aded0a2c82fde3733c3f5a4df0cdb13011fa9412",
-  "firmware_source_revision": "e799c73ab286c26648771cc91d2aaefad0c0a10b",
+  "firmware_source_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda",
   "protocol_versions": [
     1,
     2,
@@ -13,13 +13,13 @@
   "applet_package": "DAPP/1",
   "validation": {
     "source_revision": "aded0a2c82fde3733c3f5a4df0cdb13011fa9412",
-    "tested_runtime_revision": "e799c73ab286c26648771cc91d2aaefad0c0a10b",
+    "tested_runtime_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda",
     "cps_tests": 116,
     "cps_failures": 0,
     "cps_skipped": 0,
     "actual_firmware_cps_parser": true,
-    "runtime_difference": "Only the latest-release link changed after the tested revision",
-    "target_ci": 44068616566,
+    "runtime_difference": "Only the latest-release download link and page release metadata change; CPS programming runtime is unchanged",
+    "target_ci": 45396375783,
     "hardware_accessed": false,
     "physical_browser_flash_qualified": false,
     "codec_037_039_040": {
@@ -43,11 +43,57 @@
       "serial_port_requests_during_startup_tests": 0,
       "unsupported_browsers_have_visible_warning_and_disabled_connect": true,
       "hardware_accessed": false
-    }
+    },
+    "p25_audio_beta3": {
+      "status": "offline-and-processor-checks-passed",
+      "source_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda",
+      "target_ci_run": 45396375783,
+      "browser_runtime_base": "3cbd328",
+      "browser_runtime_difference": "Only the latest-release download link changes",
+      "cps_programming_runtime_unchanged": true,
+      "hardware_accessed": false,
+      "bundled_node_tests": {
+        "passed": 138,
+        "failed": 0,
+        "skipped": 8,
+        "scope": "Standalone CPS tests; eight canonical firmware/source bridge cases skip without research tree"
+      },
+      "hosted_browser_scenarios": 18,
+      "hosted_browser_support_startup_cases": 5,
+      "native_chromium_reader_asset_fetch": true,
+      "bundled_native_chromium_reader_asset_fetch": true,
+      "startup_tests_request_no_physical_serial_ports": true,
+      "host_ci_run": 45393907525,
+      "host_ci_success": true,
+      "target_ci_success": true,
+      "target_workflow_head_revision": "d5c42b0fce63814e645d7fa1b2d4340e36084605",
+      "target_checked_out_source_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda",
+      "application_bytes": 523844,
+      "application_sha256": "fda7f87150bdca2550f6ab37b3f1040265bdafbd197cef30b81f29e66ff1bcfc",
+      "ram_bytes": 199184,
+      "ram_limit_bytes": 211456,
+      "ram_margin_bytes": 12272,
+      "normal_multimode_profile": true,
+      "laboratory_diagnostics": false,
+      "omaha_dedicated_profile": false,
+      "muncie_dedicated_profile": false,
+      "physical_browser_flash_qualified": false,
+      "rf_qualification_added": false
+    },
+    "host_ci": {
+      "run_id": 45393907525,
+      "source_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda",
+      "completed": true,
+      "success": true,
+      "actual_firmware_cps_parser": true
+    },
+    "target_workflow_head_revision": "d5c42b0fce63814e645d7fa1b2d4340e36084605",
+    "target_checked_out_source_revision": "d53b22432826cd85ab9d5bcffd80ff0fd3a5ecda"
   },
   "source_adjustments": [
     "README logical protocol link adjusted for standalone bundle",
-    "Upstream-dependent device benchmark retained in canonical source tests only"
+    "Upstream-dependent device benchmark retained in canonical source tests only",
+    "Beta.3 maintenance firmware link and page metadata; preserve deployed browser runtime, codec preparation and CPS programming files"
   ],
   "assets": {
     "app.js": "c24874256f13b3c08439394f5c92056c5dff77213f71d224f4bf0ba659a1fb1c",
@@ -61,8 +107,8 @@
     "applets/README.md": "a1d4d05465f82bb97be90e978afea207ac0a3a361102f64136fd75b7024ad37b",
     "applets.js": "907cec3116e9587064e3533bb2fc83a55b8e0ac53477536b48687e6e147e1cb9",
     "call-tools.js": "7dda25a10722db40988b7b8921165e64f24f055efa1c866e93e8f7d479ec75cc",
-    "firmware.html": "429c9ceb8ffa22e680fbb5192118d02df8654c960bceb22b1de273b6279b867c",
-    "flasher/app.js": "026b669aafdd9b0773082c7e75184e536525cf939db03126beeb6091c56e3ae6",
+    "firmware.html": "5c54797e7153d9aa7696023381c2da3a1cd16832bffcd5baaa215dbff579a457",
+    "flasher/app.js": "792621d7fd9732f0d717da33c5a4ab25defe47abd138d4a25b21bef3ebb3bfd3",
     "flasher/backup-export.js": "394308ad5bd124ca0ba0edf8725a628d256cb8a3684ea3f31a0a004772c72785",
     "flasher/device.js": "35becc38cddcb445a9ba44663553f527682510d9ebff99f19e2bbe6208940780",
     "flasher/package.js": "827fd6239274ed8ee6d5c9e5b45bc6cb3ed16f462bee480435d487d3158fddac",
@@ -108,7 +154,9 @@
     "vendor/LICENSE.RadioFoundry": "9988da23b503eebd9b627eca5bea80742257eec657c2a6916a705a301de42f67",
     "vendor/undo.js": "034fd4a3439add324b0d1205fc0e840c9e2f2db31b64eebb5ec4874e9661b4ed",
     "flasher/browser-support.js": "4c8785b27a5ca1a97decc722c7a6a95c75d1239dfddd6a247c82d353336c2835",
-    "tests/web-flasher-browser-support.test.js": "ddcabc94bb7335a6e92bd99f20a8ae51e021b047dc1c8ea3a8ea2f964d9f7c66"
+    "tests/web-flasher-browser-support.test.js": "ddcabc94bb7335a6e92bd99f20a8ae51e021b047dc1c8ea3a8ea2f964d9f7c66",
+    "social/firmware-0.3.0-beta.3.png": "c79e3cb29fbb3a969670f24500fa78cca47ba8d8110d99293e25bce9b0528313"
   },
-  "flasher_source_revision": "3cbd3283d9cba30d2d76670696418e815e9b9dcf"
+  "flasher_source_revision": "3cbd3283d9cba30d2d76670696418e815e9b9dcf",
+  "firmware_release_version": "0.3.0-beta.3"
 }
